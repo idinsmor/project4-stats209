@@ -1,0 +1,30 @@
+---
+title: "Project4"
+author: "Ian Dinsmore, Jack Marsjanik"
+date: "5/19/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(mdsr)
+library(Lahman)
+library(dplyr)
+```
+```{r}
+hof <- Batting %>% 
+  group_by(playerID) %>%
+  inner_join(HallOfFame, by = c("playerID" = "playerID")) %>% 
+  filter(inducted == "Y", votedBy == "BBWAA") %>% 
+  summarise(tH = sum(H), tHR = sum(HR), tRBI = sum(RBI), tSB = sum(SB)) %>% 
+  filter(tH > 1000)
+hof
+```
+
+
+
+
