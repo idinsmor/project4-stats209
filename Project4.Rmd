@@ -25,6 +25,12 @@ hof <- Batting %>%
 hof
 ```
 
-
-
+```{r}
+clusteredHOF <- kmeans(hof[, 2:5], 4, nstart = 25)
+clusteredHOF
+```
+```{r}
+clusteredHOF$cluster <- as.factor(clusteredHOF$cluster)
+ggplot(hof, aes(tHR, tH, color = clusteredHOF$cluster)) + geom_point() +xlab("Total Home Runs") + ylab("Total Hits")
+```
 
